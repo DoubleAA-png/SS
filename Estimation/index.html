@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyHub | A calmer way to study</title>
+    <link rel="stylesheet" href="style.css?v=35">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#/home" class="logo">Study<span class="highlight">Hub</span></a>
+            <nav class="nav-links">
+                <a href="#/home" class="nav-link">Home</a>
+                <a href="#/homework" class="nav-link">Homework</a>
+                <a href="#/notes" class="nav-link">Notes</a>
+                <a href="#/quizzes" class="nav-link">Quizzes</a>
+                <a href="#/about" class="nav-link">About</a>
+            </nav>
+            <button class="btn-primary join-btn" id="joinBtn" type="button">Join</button>
+        </div>
+    </header>
+
+    <!-- Main Screen / Get Started Hero -->
+    <main class="hero-section">
+        <div class="hero-content">
+            <div class="badge fade-in"><span class="badge-mark" aria-hidden="true"></span>A little more room to think</div>
+            <h1 class="hero-title fade-in">Make space for<br><span class="gradient-text">your best work.</span></h1>
+            <p class="hero-subtitle fade-in">A thoughtful place for class notes, upcoming assignments, and quick study sessions. Everything you need, without the clutter.</p>
+            <div class="hero-actions fade-in">
+                <button class="btn-primary" id="getStartedBtn">Get Started</button>
+                <button class="btn-secondary" id="exploreBtn">Explore Features</button>
+            </div>
+        </div>
+
+        <!-- Quick Feature Cards Preview -->
+        <div class="features-grid fade-in" id="features">
+            <article class="feature-card" id="notes" tabindex="0">
+                <div class="icon" aria-hidden="true">✎</div>
+                <h3>Notes</h3>
+                <p>Keep the useful bits from every class close at hand.</p>
+                <button class="card-explore" type="button" data-feature="notes">Explore <span aria-hidden="true">↗</span></button>
+            </article>
+            <article class="feature-card" id="homework" tabindex="0">
+                <div class="icon" aria-hidden="true">▤</div>
+                <h3>Homework</h3>
+                <p>See what’s due next and make a plan that sticks.</p>
+                <button class="card-explore" type="button" data-feature="homework">Explore <span aria-hidden="true">↗</span></button>
+            </article>
+            <article class="feature-card" id="quizzes" tabindex="0">
+                <div class="icon" aria-hidden="true">✳</div>
+                <h3>Quizzes</h3>
+                <p>Turn a few spare minutes into a useful review.</p>
+                <button class="card-explore" type="button" data-feature="quizzes">Explore <span aria-hidden="true">↗</span></button>
+            </article>
+        </div>
+    </main>
+
+    <main class="blank-page" id="blankPage" aria-label="Selected page" hidden>
+        <section class="notes-content" id="notesContent" aria-labelledby="notesTitle" hidden>
+            <div class="notes-heading">
+                <div>
+                    <span class="about-eyebrow">Your study space</span>
+                    <h1 class="notes-title" id="notesTitle">Make a long lesson a little lighter.</h1>
+                </div>
+                <p>Pull out the key ideas and keep your focus on what matters.</p>
+            </div>
+            <div class="notes-workspace">
+                <section class="summarizer-panel video-panel" aria-labelledby="videoSummaryTitle">
+                    <div class="panel-heading">
+                        <span class="panel-icon" aria-hidden="true">▶</span>
+                        <div>
+                            <span class="panel-kicker">Watch less, learn more</span>
+                            <h2 id="videoSummaryTitle">Video summarizer</h2>
+                        </div>
+                    </div>
+                    <label class="field-label" for="videoUrl">Video link</label>
+                    <div class="panel-input">
+                        <input id="videoUrl" type="url" placeholder="Paste a video link here" autocomplete="url">
+                    </div>
+                    <div class="panel-actions">
+                        <button class="attach-button" id="addLinkBtn" type="button"><span aria-hidden="true">↗</span> Add link</button>
+                        <button class="summary-button" type="button">Summarize</button>
+                    </div>
+                    <div class="summary-output">
+                        <div class="output-decoration" aria-hidden="true">✦</div>
+                        <h3>Your summary will appear here</h3>
+                        <p>Add a video link to turn a long watch into a quick, clear recap.</p>
+                    </div>
+                </section>
+
+                <section class="summarizer-panel notes-panel" aria-labelledby="textSummaryTitle">
+                    <div class="panel-heading">
+                        <span class="panel-icon" aria-hidden="true">✎</span>
+                        <div>
+                            <span class="panel-kicker">Bring your own material</span>
+                            <h2 id="textSummaryTitle">Notes &amp; documents</h2>
+                        </div>
+                        <button class="attach-button gemini-connect-button" id="geminiConnectBtn" type="button">Connect Gemini</button>
+                    </div>
+                    <label class="field-label" for="notesInput">Paste your notes or text</label>
+                    <div class="panel-input">
+                        <textarea id="notesInput" placeholder="Drop in class notes, a reading, or any text you want to review..." spellcheck="true"></textarea>
+                    </div>
+                    <div class="panel-actions">
+                        <span class="file-action">
+                            <button class="attach-button" id="addFileBtn" type="button"><span aria-hidden="true">＋</span> <span id="fileButtonLabel" aria-live="polite">Add file</span></button>
+                        </span>
+                        <input class="visually-hidden" id="fileInput" type="file" accept=".txt,.md,.csv,.json,.html,.htm,text/plain,text/markdown,text/csv,application/json,text/html">
+                        <button class="summary-button" id="organizeNotesBtn" type="button">Organize notes</button>
+                    </div>
+                    <div class="summary-output" id="notesSummaryOutput" aria-live="polite" aria-atomic="true">
+                        <div class="output-decoration" aria-hidden="true">✦</div>
+                        <h3>Your organized notes will appear here</h3>
+                        <p>Group related ideas and create clear study notes from your text or document.</p>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <dialog class="link-dialog" id="linkDialog" aria-labelledby="linkDialogTitle">
+            <form class="link-dialog-form" id="linkForm">
+                <button class="dialog-close" id="closeLinkDialog" type="button" aria-label="Close">×</button>
+                <span class="about-eyebrow">Video summarizer</span>
+                <h2 id="linkDialogTitle">Add a video link</h2>
+                <p>Paste the link to the video you want to summarize.</p>
+                <label class="field-label" for="linkDialogInput">Video link</label>
+                <input class="link-dialog-input" id="linkDialogInput" type="url" placeholder="https://example.com/video" required>
+                <div class="link-dialog-actions">
+                    <button class="dialog-cancel" id="cancelLinkDialog" type="button">Cancel</button>
+                    <button class="summary-button" type="submit">Add link</button>
+                </div>
+            </form>
+        </dialog>
+
+        <dialog class="link-dialog" id="geminiDialog" aria-labelledby="geminiDialogTitle">
+            <form class="link-dialog-form" id="geminiForm">
+                <button class="dialog-close" id="closeGeminiDialog" type="button" aria-label="Close">×</button>
+                <span class="about-eyebrow">Private connection</span>
+                <h2 id="geminiDialogTitle">Connect Gemini</h2>
+                <p>Your key is sent to this local StudyHub server and held in memory only. When you organize notes, your text is sent to Google Gemini.</p>
+                <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer">Get a Gemini API key</a>
+                <label class="field-label" for="geminiKeyInput">Gemini API key</label>
+                <input class="link-dialog-input" id="geminiKeyInput" type="password" autocomplete="off" spellcheck="false" required>
+                <p class="gemini-error" id="geminiError" role="status" hidden></p>
+                <div class="link-dialog-actions">
+                    <button class="dialog-cancel" id="cancelGeminiDialog" type="button">Cancel</button>
+                    <button class="summary-button" id="saveGeminiKeyBtn" type="submit">Connect</button>
+                </div>
+            </form>
+        </dialog>
+
+        <section class="about-content" id="aboutContent" aria-labelledby="aboutTitle" hidden>
+            <div class="about-heading">
+                <span class="about-eyebrow">A little about us</span>
+                <h1 class="about-title" id="aboutTitle">Study with purpose.</h1>
+            </div>
+            <div class="about-sections">
+                <article class="about-card">
+                    <span class="about-number" aria-hidden="true">01</span>
+                    <div>
+                        <h2>Who We Are</h2>
+                        <p>A small, single-developer team working to help students learn with confidence and improve their grades through thoughtful study tools.</p>
+                    </div>
+                </article>
+                <article class="about-card">
+                    <span class="about-number" aria-hidden="true">02</span>
+                    <div>
+                        <h2>Why Pay?</h2>
+                        <p>Our paid materials offer useful support for learning and building skills for future career opportunities. Your support also helps keep StudyHub online and improving.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="about">
+        <p>&copy; 2026 StudyHub. Built for students.</p>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
